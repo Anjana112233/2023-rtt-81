@@ -19,7 +19,7 @@ public class EscapeCharacters {
 		System.out.println("To get a slash to print we need 2 of them \\");
 		
 		//what happens if I want a " quote in my string
-		System.out.println("This is a quote \" in a string");
+		System.out.println("This is a quote \" in a string ");
 	}
 
 }
