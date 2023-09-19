@@ -6,6 +6,7 @@ public class AreaComputer {
 	    double radius;
 	    double area;
 	    
+	    
 	    // Assign a radius
 	    radius = 20;
 	    
