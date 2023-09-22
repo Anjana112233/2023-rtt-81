@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class CoffeeShop {
 	List<Product> products = new ArrayList<>();
+	List<Product> order = new ArrayList<>();
+	
 	Scanner input = new Scanner(System.in);
 	
 	public void setupProducts() {
@@ -39,12 +41,18 @@ public class CoffeeShop {
 	}
 	
 	public void printProduct(Product product) {
-		System.out.println("Product name: " + product.getName() + " Price: " + product.getPrice());
+		System.out.println("Product name: " + product.getName() + " \tPrice: $" + product.getPrice());
 	
 		}
 	public void printAllproducts() {
 		for (Product product : products) {
 			printProduct(product);
+		}
+	}
+	public void printOrders() {
+		for(Product product : order) {
+			printProduct(product);
+			
 		}
 	}
 	public void example() {
@@ -76,7 +84,7 @@ public class CoffeeShop {
 				
 		
 	} 
-	public int userSelect() {
+	public int displayMainUserMenu() {
 		System.out.println("1) Print the menu itens and prices");
 		System.out.println("2) Add an iten to your order");
 		System.out.println("3) Print the item in your order");
@@ -84,18 +92,37 @@ public class CoffeeShop {
 		
 		System.out.println("What do you want to do?");
 		int select = input.nextInt();
+		input.nextLine();
 		return select;
 		
+	}
+	public void userSelectProduct() {
+		System.out.println("Enter product name to order: ");
+		String orderSelection = input.nextLine();
+		
+		for (Product product : products) {
+			if (product.getName().equalsIgnoreCase(orderSelection)) {
+				order.add(product);
+				System.out.println("Added " + product.getName() + "to your order.");
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
 		CoffeeShop cf = new CoffeeShop();
 		cf.setupProducts();
-	
 		
-		int userSelection = cf.userSelect();
+		while (true) {
+			
+		int userSelection = cf.displayMainUserMenu();
 		if (userSelection == 1) {
 			cf.printAllproducts();
+		}else if (userSelection == 2) {
+			cf.userSelectProduct();
+		}else if (userSelection == 3) {
+			cf.printOrders();
+		}else if (userSelection == 5) {
+			System.exit(0);
 		}
 		else {
 			System.out.println("User input " + userSelection + " is unknown. Try again.");
@@ -103,6 +130,8 @@ public class CoffeeShop {
 		
 		
 	}
-
+	}
 }
+
+
 
