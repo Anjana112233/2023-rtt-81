@@ -6,12 +6,12 @@ public class FindString {
 	       int result;
 
 	       // getting index of character 's'
-	       result = str1.indexOf('a');
+	       result = str1.indexOf('s');
 
 	       System.out.println(result); // 6
 
 	       // getting index of character 'J'
-	       result = str1.lastIndexOf('f');
+	       result = str1.lastIndexOf('J');
 	       System.out.println(result); // 0
 	       // the last occurrence of 'a' is returned
 	       result = str1.lastIndexOf('a');
