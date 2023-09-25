@@ -1,8 +1,11 @@
 package stringmethods;
 
 public class ReplaceDemoMain {
+	
 	public static void main(String[] args) {
 	    String str1 = "abc cba";
+	    
+	 
 
 	    // all occurrences of 'a' is replaced with 'z'
 	    System.out.println(str1.replace('a', 'z'));  
