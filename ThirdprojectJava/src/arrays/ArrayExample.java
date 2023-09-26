@@ -42,6 +42,53 @@ public class ArrayExample {
 			}
 		}System.out.println("Position of the first null is "+ firstNull);
 		
+		//write a for loop that tells me how many values are not null
+		//this is using an old style for loop with an array location
+		int notNullCount = 0;
+		for (int pos = 0; pos < stringArray.length; pos++) {
+			if (stringArray[pos] != null) {
+				notNullCount = notNullCount + 1;
+			}
+		}
+		System.out.println("Number of null values in array is " + notNullCount);
+		//same solution with an enhanced for loop -- this is little bit simpler
+		// with the enchanced for loop you are not able to get the position of the value in the array
+		
+		int notNullCountEnhanced = 0;
+		for (String value : stringArray) {
+			if (value != null) {
+				notNullCountEnhanced = notNullCountEnhanced + 1;
+			}
+		}System.out.println("Number of values in array is " + notNullCountEnhanced);
+		
+		// write a for loop for final position
+		int lastNullPositionReverse = -1;
+		for (int pos = stringArray.length - 1; pos >= 0; pos--) {
+			if (stringArray[pos] == null) {
+				lastNullPositionReverse = pos;
+				break;
+			}
+		}
+		if (lastNullPositionReverse == -1) {
+			System.out.println("The array does not have a null");
+		} else {
+				System.out.println("The last null of the array is in position" + lastNullPositionReverse);
+				
+				//loop over the array and count the number of letter that are not vowels
+				int numberOfLetters = 0;
+				String letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
+						//using an enhanced loop and much less code
+						String vowels = "aeiou";
+								int numberOfLettersEnhanced = 0;
+						for (String letter : letters.split(",")) {
+							if (!vowels.contains(letter)) {
+								numberOfLettersEnhanced = numberOfLettersEnhanced + 1;
+								
+							}
+						}
+						System.out.println("Number of letters enhanced = "+ numberOfLettersEnhanced);
+		}
+		}
 	}
 
-}
+
