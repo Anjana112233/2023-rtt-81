@@ -41,22 +41,57 @@ public class SubString {
 					System.out.println("Position of the last space : " + lastSpaceIndex);
 				}
 				else {
-					System.out.println("No space found in the spring");
+					System.out.println("No space found in the space");
 				}
 				
 				
 				// substring of the characters between the first and last space of the string
 				
 				
+				
+				
 				// do the same thing to find the substring of the first and last vowel of the string
+				int firstVowelPosition = 0;
+				int lastVowelPosition = 0;
+
+				for (int i = 0; i < example.length(); i++) {
+					if (example.charAt(i) == 'a' || example.charAt(i) == 'e' || example.charAt(i) == 'i'
+							|| example.charAt(i) == 'o' || example.charAt(i) == 'u') {
+						firstVowelPosition = i;
+						break;
+						// lastVowelPosition=example.lastIndexOf(i);
+					}
+				}
+				for(int j=0;j<example.length();j++)
+				{
+					
+					
+				if (example.charAt(j) == 'a' || example.charAt(j) == 'e' || example.charAt(j) == 'i'
+							|| example.charAt(j) == 'o' || example.charAt(j) == 'u') {
+						lastVowelPosition=j;
+						
+					}
+				}
+
+				
+				System.out.println("\n\nSubstring between the first and last vowel of the string: "
+						+ example.substring(firstVowelPosition, lastVowelPosition));
 			
 				
 				// use the string.charAt function and use a for loop to loop over the entire string
 				// and print out each character with a new line after it.
 				// you need to use the string.length() function also
 				
+				for (int pos = 0; pos < example.length(); pos++) {
+					System.out.println(example.charAt(pos));
+				}
+				
+				
 				// using only indexOf(" ") print the substring that contains the word "is"
 				// use 2 substrings to do this.
+				String is = example.substring(example.indexOf(" ") + 1);
+				is = is.substring(0, is.indexOf(" "));
+				System.out.println(is);
 				
 
 	}
