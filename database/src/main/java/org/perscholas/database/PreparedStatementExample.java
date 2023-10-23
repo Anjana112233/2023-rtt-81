@@ -42,7 +42,7 @@ public class PreparedStatementExample {
 
 			while (result.next()) {
 				Integer id = result.getInt("id");
-				String fname = result.getString("firstName");
+				String fname = result.getString("firstname");
 				String lname = result.getString("lastname");
 				String email = result.getString("email");
 				System.out.println(id + " | " + fname +" | "+ lname+ "  | " + email);
