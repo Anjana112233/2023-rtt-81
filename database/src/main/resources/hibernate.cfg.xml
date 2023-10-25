@@ -17,6 +17,8 @@
 		<mapping class="org.perscholas.database.entity.Order" />
 		<mapping class="org.perscholas.database.entity.Product" />
 		
+		<mapping class="org.perscholas.database.entity.OrderDetail" />
+		
 		
 		
 	</session-factory>
