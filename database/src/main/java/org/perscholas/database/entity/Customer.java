@@ -1,57 +1,66 @@
 package org.perscholas.database.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "customers")
 
-
 public class Customer {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
-	
-	 @Column(name = "customer_name")
-	 private String customerName;
-	 
-	 @Column (name = "contact_lastname")
-	 private String contactLastname;
-	 
-	 @Column (name = "phone")
-	 private String phone;
-	 
-	 @Column (name = "address_line1")
-	 private String addressLine1;
-	 
-	 @Column (name = "address_line2")
-	 private String addressLine2;
-	 
-	 @Column (name = "city")
-	 private String city;
-	 
-	 @Column(name = "state")
-	 private String state;
-	 
-	 @Column(name = "postal_code")
-	 private String postalcode;
-	 
-	 @Column (name = "country")
-	 private String country;
-	 
-	 @Column (name = "sales_rep_employee_id")
-	 private Integer salesRepEmployeeId;
-	 
-	 @Column(name = "credit_limit", columnDefinition = "Decimal (10,2)")
-	 private Double creditLimit;
 
-	 // ---- getters and setters ----
-	 
+	// https://attacomsian.com/blog/spring-data-jpa-one-to-many-mapping
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Order> orders;
+	// need to make getters and setters for every thing that we add here
+
+	@Column(name = "customer_name")
+	private String customerName;
+
+	@Column(name = "contact_lastname")
+	private String contactLastname;
+
+	@Column(name = "phone")
+	private String phone;
+
+	@Column(name = "address_line1")
+	private String addressLine1;
+
+	@Column(name = "address_line2")
+	private String addressLine2;
+
+	@Column(name = "city")
+	private String city;
+
+	@Column(name = "state")
+	private String state;
+
+	@Column(name = "postal_code")
+	private String postalcode;
+
+	@Column(name = "country")
+	private String country;
+
+	@Column(name = "sales_rep_employee_id")
+	private Integer salesRepEmployeeId;
+
+	@Column(name = "credit_limit", columnDefinition = "Decimal (10,2)")
+	private Double creditLimit;
+
+	// ---- getters and setters ----
+
 	public Integer getId() {
 		return id;
 	}
@@ -147,15 +156,13 @@ public class Customer {
 	public void setCreditLimit(Double creditLimit) {
 		this.creditLimit = creditLimit;
 	}
-	 
-	 
-	 
-	 
-	 
-	 
-	
-		
 
+	public List<Order> getOrders() {
+		return orders;
 	}
 
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 
+}
