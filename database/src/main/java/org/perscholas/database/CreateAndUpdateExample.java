@@ -13,7 +13,7 @@ public class CreateAndUpdateExample {
 
 		// when creating a new database record do not set the id on the entity
 		c.setCustomerName("Series Reminder LLC");
-		c.setContactFirstname("Eric");
+		c.setCustomerName("Eric");
 		c.setContactLastname("Heilig");
 		c.setAddressLine1("Address line 1");
 		c.setAddressLine1("Address Line 2");
