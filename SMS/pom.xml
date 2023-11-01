@@ -3,4 +3,7 @@
   <groupId>perscholas</groupId>
   <artifactId>school</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+	  
+  </dependencies>
 </project>
