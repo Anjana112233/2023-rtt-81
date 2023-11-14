@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+             background-color: black; /*Change background color to black */ 
+            /* color: white; Change text color to white */
+
+        }
+        #main_container {
+            width: 100%;
+            margin: 0 auto;
+            /* background-color: black; Change background color to black */
+        }
+
+        
+        #section1 {
+            display: flex;
+            flex-wrap:wrap;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-bottom: 2px solid #ccc; /* Border line between section1 and section2 */
+        }
+        .box {
+            /* flex-basis: 35%; */
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgb(238, 255, 0);
+        }
+        #image_box {
+            text-align: center;
+            flex: 1;
+            border: 2px solid rgb(0, 132, 255);
+        }
+        #general_info_box {
+            font-weight: normal;
+            flex: 1;
+            border: 2px solid rgb(0, 132, 255); /* Blue border for Box 2 */
+        }
+        #biography_box {
+            font-style: italic;
+            width: 100%;
+            border: 2px solid rgb(0, 132, 255);
+
+            /* flex: 1 make the biography box to take up the remaining space */
+            /* margin-left: 20px; add a margin to create spacing between them. */
+        }
+        #section2 {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px solid rgb(0, 255, 0);
+        }
+        .section-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .section-content {
+            flex-basis: 49%; /* To create two columns within each section */
+            border: 2px solid #ffc9c0; /* Peach color border for each Section Content box */
+            /* padding: 10px; */
+            /* margin-bottom: 10px; */
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .work-description {
+            list-style-type: square;
+        }
+        #section3 {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px solid rgb(21, 255, 0); /* Yellow border for Section 3 */
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main_container">
+        <section id="section1">
+            <div class="box" id="image_box">
+                <img src="your_image.jpg" alt="Your Name" width="100" height="100">
+                <h1>Anjana Karki</h1>
+                <p>Full Stack Java Developer</p>
+            </div>
+            <div class="box" id="general_info_box">
+                <h2>General Information</h2>
+                <p>Address: Austin, Texas<br>Phone: 2107765835<br>Email: karkianjana111@gmail.com</p>
+            </div>
+            <div class="box" id="biography_box">
+                <h2>Biography</h2>
+                <p> I am a great problem solver with the knowledge of both back-end and frontend Java developer. I have the knowledge of Junit testing.</p>
+            </div>
+        </section>
+    </div>
+    <section id="section2">
+        <div class="section-box">
+            <div class="section-content">
+                <h2 class="section-title">EMPLOYMENT</h2>
+                <p>Texas Comptroller of Public Accounts<br>Software Testing Analyst Intern<br>June 2023 - August 2023</p>
+                <ul class="work-description">
+                    <li>Writing test cases on Jira stories using the JIRA tool for various projects </li>
+                    <li>Reporting the defect found in the project to the developer using the JIRA tool </li>
+                    <li>Trained in the automation of scripts using an automation tool </li>
+                </ul>
+                <p>SEIRA.AI<br>Quality Engineer<br>May 2022 - March 2023</p>
+                <ul class="work-description">
+                    <li>Performed Quality assurance testing to ensure the products were good enough to send out to the Client/Customer, 
+                        which helped company revenue increase by 65% in the first two months </li>
+                    <li>Implemented Functional testing to ensure all the features work as per software requirements </li>
+                    <li>Prepared test cases, test plans, and test Scenarios for testing and bug reporting using the JIRA tool</li>
+                </ul>
+
+                <p>SEIRA.AI<br>Quality Assurance Tester Intern<br>July 2021 - April 2022</p>
+                <ul class="work-description">
+                    <li>Performed Quality Assurance testing for every product to make sure everything is good on products  </li>
+                    <li>Download and install software on the tablet at a targeted time to ship out to customers; increased
+                         profit by 75% for the company </li>
+                    <li>Customer support for technical problems on software; gain good reviews from the customer </li>
+                </ul>
+
+
+
+            </div>
+            <div class="section-content">
+                <h2 class="section-title">EDUCATION</h2>
+                <p>Austin Community College<br>Associate Degree in Computer Science<br>2019-2022</p>
+                <p>Tribhuwan University<br>Bachelor Degree in Environmental Science<br>2013-2017</p>
+
+            </div>
+        </div>
+        <div class="section-box">
+            <div class="section-content">
+                <h2 class="section-title">PROGRAMMING SKILLS</h2>
+                <ul>
+                    <li>JAVA</li>
+                    <li>MySql</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                </ul>
+            </div>
+            <div class="section-content">
+                <h2 class="section-title">SOFT SKILLS</h2>
+                <ul>
+                    <li>Problem-Solving</li>
+                    <li>Team work</li>
+                    <li>Accountability</li>
+                </ul>
+            </div>
+            <div class="section-content">
+                <h2 class="section-title">LANGUAGE SKILLS</h2>
+                <ul>
+                    <li>English</li>
+                    <li>Nepali</li>
+                    <li>Hindi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+
+
+
