@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Windows</title>
+</head>
+<body>
+    <div id = "chatWindow1" style = "border: 2px solid #ccc; padding: 10px; margin: 10px;">
+        <div id = "messages1" style="height: 100px; overflow-y: scroll;"></div>
+        <input type="text" id = "nameInput1" placeholder="Your Name"  style="margin-bottom: 5px; padding: 5px;" >
+        <textarea id = "messageInput1" placeholder = "Type your message" style="margin-bottom: 5px; padding: 5px;"></textarea>
+        <button id = "submitBtn1">Submit</button>
+
+    </div>
+
+    <div id="chatWindow2" style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+        <div id="messages2" style="height: 100px; overflow-y: scroll;"></div>
+        <input type="text" id="nameInput2" placeholder="Your Name" style="margin-bottom: 5px; padding: 5px;">
+        <textarea id="messageInput2" placeholder="Type your message" style="margin-bottom: 5px; padding: 5px;"></textarea>
+        <button id="submitBtn2" style="padding: 5px;">Submit</button>
+    </div>
+    <script>
+        function createMessageElement(name, message){
+            const messageElement = document.createElement('p');
+            messageElement.textContent = `${name} : ${message}`;
+            return messageElement;
+    
+        }
+        function appendMessage(chatWindow, name, message){
+            const messageContainer = chatWindow.querySelector('.messages');
+            const messageElement = createMessageElement(name, message);
+            messagesContainer.appendChild(messageContainer);
+        }
+        function setupChatWindow(chatWindoe, nameInput, messageInput, submitbtn){
+            const messagesContainer = document.createElement('div');
+            messagesContainer.className = 'messages';
+            messagesContainer.style.height = '100px';
+            messagesContainer.style.overflowY = 'scroll';
+            chatWindow.appendChild(messagesContainer);
+
+            submitBtn.addEventListener('click', function(){
+                const name = nameInput.value;
+                const message = messageInput.value;
+
+                if (name && message){
+                    appendMessage(chatWindow, name, message);
+                    nameInput.value = '';
+                    messageInput = '';
+
+                }
+            
+            
+            });
+            messageInput.addEventListener('keydown', function(event){
+                if (event.key === 'Enter'){
+                    submitBtn.click(); //simulate a click on the submit button
+                }
+                
+            });
+        }
+        const chatWindow1= document.getElementById('chatWindow1');
+        const nameInput1 = document.getElementById('nameInput1');
+        const messageInput1 = document.getElementById('messageInput1');
+        const submitBtn1 = document.getElementById('submitBtn1');
+
+        setupChatWindow(chatWindow1, nameInput1, messageInput1, submitBtn1);
+
+        const chatWindow2 = document.getElementById('chatWindow2');
+        const nameInput2 = document.getElementById('nameInput2');
+        const messageInput2 = document.getElementById('messageInput2');
+        const submitBtn2 = document.getElementById('submitBtn2');
+
+        setupChatWindow(chatWindow2, nameInput2, messageInput2, submitBtn2);
+    </script>
+
+    
+</body>
+</html>
