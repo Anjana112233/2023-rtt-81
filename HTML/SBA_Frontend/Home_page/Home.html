@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<h1><b>Welcome to home page</b></h1>
+
+<a href="../login page/login.html" class="custom-link login-link">Login</a>
+<a href="../Register_page/Registerpage.html" class="custom-link">Register</a>
+<body>
+    <p>Shop all your favorite traditonal wear here!!!  </p>
+    
+ 
+    <div class="search-container">
+        <!-- Search box -->
+        <input type="text" class="search-box" placeholder="Search..." onfocus="showDropdown()" onblur="hideDropdown()">
+        
+
+        <!-- Dropdown menu -->
+        <div class="dropdown" id = "myDropdown">
+            
+            <div class="dropdown-content">
+                <a href="#">Saree</a>
+                <a href="#">Kurti</a>
+                <a href="#">Tops</a>
+            </div>
+        </div>
+    </div>  
+
+   <label for="wear">Choose your desire wear:</label>
+    <select id="Clothes" name="Clothes">
+        <option value="Saree">Saree</option>
+        <option value="Kurti">Kurti</option>
+        <option value="Tops">Tops</option>
+        <option value="Suits">Suits</option>
+    </select>
+    <script>
+        function showDropdown() {
+            document.getElementById("myDropdown").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("myDropdown").style.display = "none";
+        }
+    </script>
+</body>
+</html>

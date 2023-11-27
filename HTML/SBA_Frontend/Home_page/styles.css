@@ -1,0 +1,51 @@
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700; /* Use the bold variant of the font */
+}
+body {
+    background-image: url(../Home_page/Traditional-nepalese-clothing.jpg);
+    background-size: cover;
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    color: white; 
+    padding: 20px;
+}
+.custom-link {
+    color: palegreen;
+    font-size: 20px;
+    /* margin-bottom: 50px; */
+}
+.login-link {
+    margin-right: 30px; /* Adjust the value as needed for the desired spacing */
+}
+
+.search-container {
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2; /* Add a background color if desired */
+}
+
+/* Style for the search box */
+.search-box {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: auto;
+}
+
+/* Style for the drop-down menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    /* display: none; */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    
+    
+}
