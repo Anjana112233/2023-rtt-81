@@ -3,12 +3,17 @@ package org.perscholas.springboot.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
+import org.perscholas.springboot.database.service.CustomerService;
 import org.perscholas.springboot.formbean.CreateCustomerFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
 @Slf4j
 @Controller
 //controller helps to connect the html page and code
@@ -30,12 +35,56 @@ public class CustomerController {
 
     @Autowired
     private CustomerDAO customerDao;
+   @Autowired
+    private CustomerService customerservice;
+
+
+    @GetMapping("/customer/search")
+    public ModelAndView search(@RequestParam(required = false) String search) {
+        ModelAndView response = new ModelAndView("customer/search");
+
+        log.debug("In the customer search container method: search parameter = " + search);
+
+        if(search != null){
+            List<Customer> customers = customerDao.findByFirstName(search);
+            response.addObject("customersVar", customers);
+            response.addObject("search", search);
+            for (Customer customer : customers) {
+                log.debug("customer: id = " + customer.getId() + " last name = " + customer.getLastName());
+            }
+        }
+
+        return response;
+    }
+    //model to find customers using the first name and the last name
+    @GetMapping("/customer/searchbyname")
+    public ModelAndView searchByFirstNameandLastName(@RequestParam(required = false) String firstname, @RequestParam(required = false) String lastname){
+        ModelAndView response = new ModelAndView("customer/searchbyname");
+        log.debug("In the customer search controller method:search parameter:"+firstname+" "+lastname);
+        if(firstname!=null || lastname!=null)
+        {
+           // @Query("SELECT c FROM Customer c WHERE c.firstName LIKE concat('%',:firstName,'%') or c.lastName LIKE concat('%',:lastName,'%')")
+            //List<Customer> findByFirstNameOrLastName(String firstName, String lastName);
+            List<Customer> customers=customerDao.findByFirstNameAndLastNameStartWith(firstname+"%",lastname+"%");
+            response.addObject("customersVar",customers);
+            response.addObject("firstname",firstname);
+            response.addObject("lastname",lastname);
+            for (Customer customer :customers)
+
+            {
+                log.debug("customer: id "+customer.getId()+" First Name "+customer.getFirstName()+" Last Name "+customer.getLastName());
+                log.debug("customer: Phone "+customer.getPhone()+" City "+customer.getCity());
+            }
+
+        }
+        return response;
+    }
 
     @GetMapping("/customer/create")
     public ModelAndView createCustomer() {
         ModelAndView response = new ModelAndView("customer/create");
 
-        log.info("In create customer with no args");
+        log.debug("In create customer with no args");
 
         return response;
     }
@@ -52,18 +101,55 @@ public class CustomerController {
         log.info("phone: " + form.getPhone());
         log.info("city: " + form.getCity()); */
 
-        Customer customer = new Customer();
+       /* Customer customer = new Customer();
         customer.setFirstName(form.getFirstName());
         customer.setLastName(form.getLastName());
         customer.setPhone(form.getPhone());
-        customer.setCity(form.getCity());
+        customer.setCity(form.getCity());*/
 
-        customerDao.save(customer);
+       // customerDao.save(customer);
+        customerservice.createCustomer(form);
 
         log.info("In create customer with incoming args");
 
         return response;
     }
+
+    @GetMapping("/customer/edit/{customerId}")
+    public ModelAndView editCustomer(@PathVariable int customerId) {
+        ModelAndView response = new ModelAndView("customer/create");
+        Customer customer = customerDao.findById(customerId);
+        CreateCustomerFormBean form = new CreateCustomerFormBean();
+
+        if (customer != null){
+            form.setId(customer.getId());
+            form.setFirstName(customer.getFirstName());
+            form.setLastName(customer.getLastName());
+            form.setPhone(customer.getPhone());
+            form.setCity(customer.getCity());
+        } else{
+            log.warn("Customer with id" + "was not found");
+        }
+        response.addObject("form", form);
+        return response;
+    }
+    //    @GetMapping("/customer/delete/{customerId}")
+//    public ModelAndView deleteCustomer(@PathVariable int customerId) {
+//        ModelAndView response = new ModelAndView("customer/search");
+//
+//        Customer customer = customerDao.findById(customerId);
+//
+//        if ( customer != null ) {
+//            customerDao.delete(customer);
+//        } else {
+//            log.warn("Customer with id " + customerId + " was not found") ;
+//        }
+//
+//        return response;
+//    }
+
+
+
 
 
 }

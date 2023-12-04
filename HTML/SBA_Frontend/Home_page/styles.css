@@ -16,36 +16,21 @@ body {
     /* margin-bottom: 50px; */
 }
 .login-link {
-    margin-right: 30px; /* Adjust the value as needed for the desired spacing */
+    margin-right: 30px; 
 }
 
-.search-container {
-    display: flex; 
-    justify-content: flex-end; 
-    align-items: center;
+.wear-lebel {
+    text-align: right;
     padding: 10px;
-    background-color: #f2f2f2; /* Add a background color if desired */
+    margin-right: 10px;
+    color: blanchedalmond;
+    font-size: 20px;
+    font-family: sans-serif;
+
+    /* display:flex; */
+    /* justify-content: flex-end; */
+
 }
 
-/* Style for the search box */
-.search-box {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-left: auto;
-}
 
-/* Style for the drop-down menu */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    /* display: none; */
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
     
-    
-}

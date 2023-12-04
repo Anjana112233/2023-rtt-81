@@ -13,38 +13,14 @@
 <body>
     <p>Shop all your favorite traditonal wear here!!!  </p>
     
- 
-    <div class="search-container">
-        <!-- Search box -->
-        <input type="text" class="search-box" placeholder="Search..." onfocus="showDropdown()" onblur="hideDropdown()">
-        
 
-        <!-- Dropdown menu -->
-        <div class="dropdown" id = "myDropdown">
-            
-            <div class="dropdown-content">
-                <a href="#">Saree</a>
-                <a href="#">Kurti</a>
-                <a href="#">Tops</a>
-            </div>
-        </div>
-    </div>  
-
-   <label for="wear">Choose your desire wear:</label>
+    
+   <label for="wear" class="wear-lebel"><b>Choose your desire wear: </b></label>
     <select id="Clothes" name="Clothes">
         <option value="Saree">Saree</option>
         <option value="Kurti">Kurti</option>
         <option value="Tops">Tops</option>
         <option value="Suits">Suits</option>
     </select>
-    <script>
-        function showDropdown() {
-            document.getElementById("myDropdown").style.display = "block";
-        }
-
-        function hideDropdown() {
-            document.getElementById("myDropdown").style.display = "none";
-        }
-    </script>
 </body>
 </html>
