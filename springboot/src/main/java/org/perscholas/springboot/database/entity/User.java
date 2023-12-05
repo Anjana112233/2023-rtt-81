@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Entity
-//@Table(name = "users")
+@Entity
+@Table(name = "users")
 @Getter
 @Setter
 public class User {
@@ -17,5 +17,9 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
+    private String password;
+
 
 }
