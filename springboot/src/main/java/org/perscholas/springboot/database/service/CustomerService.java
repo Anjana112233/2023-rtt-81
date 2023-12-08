@@ -35,6 +35,7 @@ public class CustomerService {
         customer.setPhone(form.getPhone());
         customer.setCity(form.getCity());
        // customerDAO.save(customer);
+        customer.setImageUrl(form.getImage_url());
 
         //this one is only after edit customer otherwise use line 37
         return customerDAO.save(customer);
