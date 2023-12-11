@@ -8,6 +8,16 @@
 
 <section>
     <div class="container">
+      <c:if test="${not empty success}">
+            <div class="row justify-content-center">
+                 <div class="col-6 text-center">
+                       <div class="alert alert-success" role="alert">
+                             ${success}
+                       </div>
+                 </div>
+            </div>
+      </c:if>
+    <div class="container">
         <form method="get" action="/customer/createSubmit">
         <input type = "hidden" name = "id" value="${form.id}">
             <div class="mt-3">
@@ -64,13 +74,13 @@
                              </c:if>
 
                  <div class="mt-3">
-                        <label for="imageUrl" class="form-label">Image Url</label>
+                        <label for="imageurl" class="form-label">Image Url</label>
                            <input type="text" class="form-control" id="imageUrl" name="imageUrl"
 
                               </div>
-                                 <c:if test="${errors.hasFieldErrors('city')}">
+                                 <c:if test="${errors.hasFieldErrors('imageUrl')}">
                                        <div style="color:red">
-                                                     <c:forEach items="${errors.getFieldErrors('city')}" var="error">
+                                                     <c:forEach items="${errors.getFieldErrors('imageUrl')}" var="error">
                                                          ${error.defaultMessage}<br>
                                                      </c:forEach>
                                                  </div>

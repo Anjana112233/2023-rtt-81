@@ -128,10 +128,10 @@ public class CustomerController {
 
         log.info("  in Create customer no error found");
         //ModelAndView response = new ModelAndView("customer/create");
-        Customer c = customerservice.createCustomer(form);
+       Customer c = customerservice.createCustomer(form);
         ModelAndView response = new ModelAndView();
         response.setViewName("redirect:/customer/edit/" + c.getId() + "?success=Customer Saved Successfully");
-        customerservice.createCustomer(form);
+       // customerservice.createCustomer(form);
 
         log.info("In create customer with incoming args");
 
@@ -156,7 +156,7 @@ public class CustomerController {
             form.setLastName(customer.getLastName());
             form.setPhone(customer.getPhone());
             form.setCity(customer.getCity());
-            form.setImage_url(customer.getImageUrl());
+            form.setImageUrl(customer.getImageUrl());
         } else{
             log.warn("Customer with id" + "was not found");
         }

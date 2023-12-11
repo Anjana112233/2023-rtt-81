@@ -22,7 +22,7 @@
                     <td>Last Name</td>
                     <td>Phone</td>
                     <td>City</td>
-                     <td>image</td>
+                     <td>Image</td>
 
                     <td>Edit</td>
                 </tr>
