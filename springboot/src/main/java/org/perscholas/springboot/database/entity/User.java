@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -20,6 +22,13 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    //Never ever use java.sql.date
+    //must always use java.util.date
+
+    @Column(name = "create_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
 
 
 }

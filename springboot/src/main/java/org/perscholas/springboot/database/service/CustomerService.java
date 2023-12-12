@@ -3,7 +3,9 @@ package org.perscholas.springboot.database.service;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
+import org.perscholas.springboot.database.entity.User;
 import org.perscholas.springboot.formbean.CreateCustomerFormBean;
+import org.perscholas.springboot.security.AuthenticatedUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ public class CustomerService {
     @Autowired
     private CustomerDAO customerDAO;
 
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
     public Customer createCustomer(CreateCustomerFormBean form){
         log.debug("id: " + form.getId());
         log.debug("firstName: "+ form.getFirstName());
@@ -28,6 +32,12 @@ public class CustomerService {
         // if the customer is null then we know that this is a create and we have to make a new object
         if (customer == null){
             customer = new Customer();
+            //these line of code loads the current logged in user record from the database
+
+            User user = authenticatedUserService.loadCurrentUser();
+
+            customer.setUserId(user.getId());
+
         }
         // set the incoming values to be save to the database
         customer.setFirstName(form.getFirstName());
