@@ -2,6 +2,7 @@ package org.perscholas.springboot.controller;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
 import org.perscholas.springboot.database.entity.User;
@@ -15,9 +16,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 @Slf4j
@@ -136,7 +142,7 @@ public class CustomerController {
        Customer c = customerservice.createCustomer(form);
         ModelAndView response = new ModelAndView();
         response.setViewName("redirect:/customer/edit/" + c.getId() + "?success=Customer Saved Successfully");
-       // customerservice.createCustomer(form);
+       //customerservice.createCustomer(form);
 
         log.info("In create customer with incoming args");
 
@@ -180,6 +186,37 @@ public class CustomerController {
         for (Customer customer : customers){
             log.debug("customer: id = " + customer.getId() + " last name = " + customer.getLastName());
         }
+    }
+    @GetMapping("/customer/fileupload")
+    public ModelAndView fileUpload(@RequestParam Integer id) {
+        ModelAndView response = new ModelAndView("customer/fileupload");
+
+        Customer customer = customerDao.findById(id);
+        response.addObject("customer", customer);
+
+        log.info(" In fileupload with no Args");
+        return response;
+    }
+    @PostMapping("/customer/fileUploadSubmit")
+    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file) {
+        ModelAndView response = new ModelAndView("customer/fileupload");
+
+        log.info("Filename = " + file.getOriginalFilename());
+        log.info("Size     = " + file.getSize());
+        log.info("Type     = " + file.getContentType());
+
+
+        // Get the file and save it somewhere
+        File f = new File("./src/main/webapp/pub/images/" + file.getOriginalFilename());
+        try (OutputStream outputStream = new FileOutputStream(f.getAbsolutePath())) {
+            IOUtils.copy(file.getInputStream(), outputStream);
+        } catch (Exception e) {
+
+
+            e.printStackTrace();
+        }
+
+        return response;
     }
 
     // the action attribute on the form tag is set to /customer/createSubmit so this method will be called when the user clicks the submit button

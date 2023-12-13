@@ -25,6 +25,9 @@
                      <td>Image</td>
 
                     <td>Edit</td>
+                     <td>Detail</td>
+                     <td>upload</td>
+
                 </tr>
                 <c:forEach items="${customersVar}" var="customer">
                     <tr>
@@ -34,7 +37,12 @@
                         <td>${customer.phone}</td>
                         <td>${customer.city}</td>
                         <td><img src="${customer.imageUrl}" style="max-width:100px"></td>
+
+                        <!-- path parameter -->
                         <td><a href="/customer/edit/${customer.id}">Edit</a></td>
+                        <td><a href="/customer/detail?id=${customer.id}">Detail</a></td>
+                         <!-- request parameter -->
+                        <td><a href="/customer/fileupload?id=${customer.id}">Upload</a></td>
                     </tr>
                 </c:forEach>
             </table>

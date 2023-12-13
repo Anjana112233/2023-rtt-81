@@ -31,11 +31,11 @@
                     <a class="nav-link" href="/employee/createemp">Create Employee</a>
                 </li>
                  <li class="nav-item">
-                              <a class="nav-link" href="/customer/search">Search employee</a>
-                             </li>
-                   <li class="nav-item">
-                                  <a class="nav-link" href="/customer/searchbyname">Search customer by name</a>
-                     </li>
+                       <a class="nav-link" href="/customer/search">Search employee</a>
+                 </li>
+                  <li class="nav-item">
+                         <a class="nav-link" href="/customer/searchbyname">Search customer by name</a>
+                  </li>
                     <li class="nav-item">
                               <a class="nav-link" href="/employee/searchbyname">Search employee by name</a>
                    </li>
