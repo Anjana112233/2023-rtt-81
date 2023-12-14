@@ -14,10 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -187,6 +184,24 @@ public class CustomerController {
             log.debug("customer: id = " + customer.getId() + " last name = " + customer.getLastName());
         }
     }
+
+    @RequestMapping("/customer/detail")
+    public ModelAndView detail(@RequestParam Integer id) {
+        ModelAndView response = new ModelAndView("customer/detail");
+
+        Customer customer = customerDao.findById(id);
+
+        if (customer == null) {
+            log.warn("Customer with id " + id + " was not found");
+            // in a real application you might redirect to a 404 here because the custoemr was nto found
+            response.setViewName("redirect:/error/404");
+            return response;
+        }
+
+        response.addObject("customer", customer);
+
+        return response;
+    }
     @GetMapping("/customer/fileupload")
     public ModelAndView fileUpload(@RequestParam Integer id) {
         ModelAndView response = new ModelAndView("customer/fileupload");
@@ -197,9 +212,11 @@ public class CustomerController {
         log.info(" In fileupload with no Args");
         return response;
     }
+
     @PostMapping("/customer/fileUploadSubmit")
-    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file) {
-        ModelAndView response = new ModelAndView("customer/fileupload");
+    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file,
+                                         @RequestParam Integer id) {
+        ModelAndView response = new ModelAndView("redirect:/customer/detail?id=" + id);
 
         log.info("Filename = " + file.getOriginalFilename());
         log.info("Size     = " + file.getSize());
@@ -211,14 +228,18 @@ public class CustomerController {
         try (OutputStream outputStream = new FileOutputStream(f.getAbsolutePath())) {
             IOUtils.copy(file.getInputStream(), outputStream);
         } catch (Exception e) {
-
-
             e.printStackTrace();
         }
 
+        // these 3 lines of code will load the customer by the id passed in
+        // update the image url field and then save the customer to the database
+        Customer customer = customerDao.findById(id);
+        customer.setImageUrl("/pub/images/" + file.getOriginalFilename());
+        customerDao.save(customer);
+
         return response;
     }
-
+}
     // the action attribute on the form tag is set to /customer/createSubmit so this method will be called when the user clicks the submit button
   /*  @GetMapping("/customer/createSubmit")
     public ModelAndView createCustomerSubmit(CreateCustomerFormBean form) {
@@ -254,4 +275,3 @@ public class CustomerController {
 
 
 
-}

@@ -36,7 +36,10 @@ public class CustomerService {
 
             User user = authenticatedUserService.loadCurrentUser();
 
-            customer.setUserId(user.getId());
+           // customer.setUserId(user.getId());
+
+            //only for one to many
+            customer.setUser(user);
 
         }
         // set the incoming values to be save to the database
